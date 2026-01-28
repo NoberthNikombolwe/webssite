@@ -1,0 +1,19 @@
+{
+  "name": "nikadi-website",
+  "version": "1.0.0",
+  "description": "Digital E-Card Invitations Website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["nikadi", "invitations", "ecard"],
+  "author": "Nikadi",
+  "license": "ISC",
+  "engines": {
+    "node": "18.x"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

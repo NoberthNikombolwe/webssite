@@ -1,0 +1,5 @@
+# Git ignore file for Nikadi website
+node_modules/
+.env
+.DS_Store
+*.log
