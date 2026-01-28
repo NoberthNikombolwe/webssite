@@ -377,6 +377,15 @@
             width: 30px;
             border-radius: 5px;
         }
+
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            background: rgba(23, 61, 109, 0.98) !important;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
     </style>
 </head>
 
@@ -1090,7 +1099,7 @@
                         <img src="logo.svg" alt="Nikadi Logo" class="h-14 w-14">
                         <span class="text-xl font-bold gradient-text">NIKADI</span>
                     </div>
-                    <p class="text-navy-200 text-sm">Making your invitations memorable</p>
+                    <p class="text-navy-200 text-sm">Where Modern Invitations Begin.</p>
                 </div>
                 <div class="flex space-x-6">
                     <a href="https://www.facebook.com/profile.php?id=61583301514369"
@@ -1350,7 +1359,7 @@
                 navLinks.classList.toggle('top-full');
                 navLinks.classList.toggle('left-0');
                 navLinks.classList.toggle('w-full');
-                navLinks.classList.toggle('glass-strong');
+                navLinks.classList.toggle('mobile-menu');
                 navLinks.classList.toggle('p-6');
             });
         }
