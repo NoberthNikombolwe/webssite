@@ -1204,11 +1204,13 @@
             const form = event.target;
             const name = form.querySelector('[name="name"]').value;
             const phone = form.querySelector('[name="phone"]').value;
+            const email = form.querySelector('[name="email"]').value;
             const eventType = form.querySelector('[name="event_type"]').value;
             const packageSelected = form.querySelector('[name="package"]').value;
+            const message = form.querySelector('[name="message"]').value;
             
-            // Send WhatsApp notification
-            const whatsappMessage = `New booking request from ${name} (${phone}) for ${eventType} event. Package: ${packageSelected}. Please check for more details.`;
+            // Send WhatsApp notification with all details
+            const whatsappMessage = `📋 *NEW BOOKING REQUEST*\n\n*Customer Details:*\n👤 Name: ${name}\n📱 Phone: ${phone}\n📧 Email: ${email}\n\n*Event Details:*\n🎉 Event Type: ${eventType}\n📦 Package Selected: ${packageSelected}\n\n*Message:*\n${message}\n\n---\nPlease contact the customer to confirm the booking.`;
             const whatsappUrl = `https://wa.me/255750301111?text=${encodeURIComponent(whatsappMessage)}`;
             
             // Open WhatsApp in a new tab
