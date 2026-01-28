@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,9 +58,17 @@
         }
 
         @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         /* Animated background shapes */
@@ -92,15 +101,35 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translate(0px, 0px); }
-            33% { transform: translate(50px, -50px); }
-            66% { transform: translate(-50px, 50px); }
+
+            0%,
+            100% {
+                transform: translate(0px, 0px);
+            }
+
+            33% {
+                transform: translate(50px, -50px);
+            }
+
+            66% {
+                transform: translate(-50px, 50px);
+            }
         }
 
         @keyframes float2 {
-            0%, 100% { transform: translate(0px, 0px); }
-            33% { transform: translate(-50px, 50px); }
-            66% { transform: translate(50px, -50px); }
+
+            0%,
+            100% {
+                transform: translate(0px, 0px);
+            }
+
+            33% {
+                transform: translate(-50px, 50px);
+            }
+
+            66% {
+                transform: translate(50px, -50px);
+            }
         }
 
         /* Floating particles */
@@ -128,12 +157,15 @@
                 opacity: 0;
                 transform: translateY(100vh) translateX(0);
             }
+
             10% {
                 opacity: 1;
             }
+
             90% {
                 opacity: 1;
             }
+
             100% {
                 opacity: 0;
                 transform: translateY(-100vh) translateX(100px);
@@ -149,30 +181,37 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .glass {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .glass-strong {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
-        
+
         .floating {
             animation: floating 3s ease-in-out infinite;
         }
-        
+
         @keyframes floating {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
-        
+
         .gradient-text {
             background: linear-gradient(90deg, #ffffff 0%, #ccddf3 100%);
             -webkit-background-clip: text;
@@ -192,8 +231,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes slideUp {
@@ -201,6 +245,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -334,14 +379,15 @@
         }
     </style>
 </head>
+
 <body class="text-white">
-    
+
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scrollProgress"></div>
-    
+
     <!-- Animated Particles Background -->
     <div class="particles" id="particles"></div>
-    
+
     <!-- Navigation -->
     <nav class="glass fixed w-full top-0 z-50">
         <div class="container mx-auto px-6 py-4">
@@ -381,10 +427,12 @@
                     We confirm receipt, send reminders, and manage your event with professional QR code scanning
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#packages" class="glass-strong px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-navy-900 transition transform hover:scale-105">
+                    <a href="#packages"
+                        class="glass-strong px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-navy-900 transition transform hover:scale-105">
                         View Packages
                     </a>
-                    <a href="#contact" class="bg-white text-navy-900 px-8 py-4 rounded-full text-lg font-semibold hover:bg-navy-100 transition transform hover:scale-105">
+                    <a href="#contact"
+                        class="bg-white text-navy-900 px-8 py-4 rounded-full text-lg font-semibold hover:bg-navy-100 transition transform hover:scale-105">
                         Get Started
                     </a>
                 </div>
@@ -404,7 +452,7 @@
                     <h3 class="text-2xl font-bold mb-4">WhatsApp & SMS</h3>
                     <p class="text-navy-200">Send beautiful e-cards directly via WhatsApp and SMS to your guests</p>
                 </div>
-                
+
                 <div class="glass rounded-2xl p-8 text-center transform hover:scale-105 transition">
                     <div class="text-5xl mb-4">
                         <i class="fas fa-phone-alt text-navy-300"></i>
@@ -412,7 +460,7 @@
                     <h3 class="text-2xl font-bold mb-4">Confirmation Calls</h3>
                     <p class="text-navy-200">We call recipients to confirm they received your invitation card</p>
                 </div>
-                
+
                 <div class="glass rounded-2xl p-8 text-center transform hover:scale-105 transition">
                     <div class="text-5xl mb-4">
                         <i class="fas fa-bell text-navy-300"></i>
@@ -420,7 +468,7 @@
                     <h3 class="text-2xl font-bold mb-4">Event Reminders</h3>
                     <p class="text-navy-200">Automatic reminders sent to invitees before your special event</p>
                 </div>
-                
+
                 <div class="glass rounded-2xl p-8 text-center transform hover:scale-105 transition">
                     <div class="text-5xl mb-4">
                         <i class="fas fa-qrcode text-navy-300"></i>
@@ -437,7 +485,7 @@
         <div class="container mx-auto">
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">Our Package Pricing</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-                
+
                 <!-- Package 1: BASIC -->
                 <div class="glass-strong rounded-3xl p-8 transform hover:scale-105 transition hover:shadow-2xl">
                     <div class="text-center">
@@ -453,16 +501,19 @@
                             <li><i class="fas fa-check text-green-400 mr-2"></i> Design of modern invitation cards</li>
                             <li><i class="fas fa-check text-green-400 mr-2"></i> Sending cards to the event host</li>
                         </ul>
-                        <button onclick="selectPackage('basic')" class="w-full bg-white text-navy-900 py-3 rounded-full font-semibold hover:bg-navy-100 transition">
+                        <button onclick="selectPackage('basic')"
+                            class="w-full bg-white text-navy-900 py-3 rounded-full font-semibold hover:bg-navy-100 transition">
                             Select Plan
                         </button>
                     </div>
                 </div>
-                
+
                 <!-- Package 2: STANDARD -->
-                <div class="glass-strong rounded-3xl p-8 transform hover:scale-105 transition hover:shadow-2xl border-2 border-navy-300">
+                <div
+                    class="glass-strong rounded-3xl p-8 transform hover:scale-105 transition hover:shadow-2xl border-2 border-navy-300">
                     <div class="text-center">
-                        <div class="bg-navy-300 text-navy-900 px-4 py-1 rounded-full text-sm font-bold mb-4 inline-block">
+                        <div
+                            class="bg-navy-300 text-navy-900 px-4 py-1 rounded-full text-sm font-bold mb-4 inline-block">
                             POPULAR
                         </div>
                         <div class="text-navy-300 text-4xl mb-4">
@@ -478,12 +529,13 @@
                             <li><i class="fas fa-check text-green-400 mr-2"></i> Distribution via SMS & WhatsApp</li>
                             <li><i class="fas fa-check text-green-400 mr-2"></i> Card scanning on event day</li>
                         </ul>
-                        <button onclick="selectPackage('standard')" class="w-full bg-white text-navy-900 py-3 rounded-full font-semibold hover:bg-navy-100 transition">
+                        <button onclick="selectPackage('standard')"
+                            class="w-full bg-white text-navy-900 py-3 rounded-full font-semibold hover:bg-navy-100 transition">
                             Select Plan
                         </button>
                     </div>
                 </div>
-                
+
                 <!-- Package 3: PREMIUM -->
                 <div class="glass-strong rounded-3xl p-8 transform hover:scale-105 transition hover:shadow-2xl">
                     <div class="text-center">
@@ -500,12 +552,13 @@
                             <li><i class="fas fa-check text-green-400 mr-2"></i> Phone call follow-ups</li>
                             <li><i class="fas fa-check text-green-400 mr-2"></i> Confirm guest attendance</li>
                         </ul>
-                        <button onclick="selectPackage('premium')" class="w-full bg-white text-navy-900 py-3 rounded-full font-semibold hover:bg-navy-100 transition">
+                        <button onclick="selectPackage('premium')"
+                            class="w-full bg-white text-navy-900 py-3 rounded-full font-semibold hover:bg-navy-100 transition">
                             Select Plan
                         </button>
                     </div>
                 </div>
-                
+
                 <!-- Package 4: EXCLUSIVE -->
                 <div class="glass-strong rounded-3xl p-8 transform hover:scale-105 transition hover:shadow-2xl">
                     <div class="text-center">
@@ -522,12 +575,13 @@
                             <li><i class="fas fa-check text-green-400 mr-2"></i> Thank-you SMS to all guests</li>
                             <li><i class="fas fa-check text-green-400 mr-2"></i> Bulk SMS services</li>
                         </ul>
-                        <button onclick="selectPackage('exclusive')" class="w-full bg-white text-navy-900 py-3 rounded-full font-semibold hover:bg-navy-100 transition">
+                        <button onclick="selectPackage('exclusive')"
+                            class="w-full bg-white text-navy-900 py-3 rounded-full font-semibold hover:bg-navy-100 transition">
                             Select Plan
                         </button>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </section>
@@ -538,34 +592,39 @@
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">How It Works</h2>
             <div class="max-w-4xl mx-auto">
                 <div class="grid md:grid-cols-2 gap-8">
-                    
+
                     <div class="glass rounded-2xl p-8">
                         <div class="flex items-start">
-                            <div class="bg-white text-navy-900 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">
+                            <div
+                                class="bg-white text-navy-900 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">
                                 1
                             </div>
                             <div>
                                 <h3 class="text-xl font-bold mb-2">Choose Your Package</h3>
-                                <p class="text-navy-200">Select the package that best fits your event needs and budget</p>
+                                <p class="text-navy-200">Select the package that best fits your event needs and budget
+                                </p>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="glass rounded-2xl p-8">
                         <div class="flex items-start">
-                            <div class="bg-white text-navy-900 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">
+                            <div
+                                class="bg-white text-navy-900 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">
                                 2
                             </div>
                             <div>
                                 <h3 class="text-xl font-bold mb-2">Design Your E-Card</h3>
-                                <p class="text-navy-200">Work with our team to create a beautiful, custom invitation card</p>
+                                <p class="text-navy-200">Work with our team to create a beautiful, custom invitation
+                                    card</p>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="glass rounded-2xl p-8">
                         <div class="flex items-start">
-                            <div class="bg-white text-navy-900 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">
+                            <div
+                                class="bg-white text-navy-900 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">
                                 3
                             </div>
                             <div>
@@ -574,10 +633,11 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="glass rounded-2xl p-8">
                         <div class="flex items-start">
-                            <div class="bg-white text-navy-900 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">
+                            <div
+                                class="bg-white text-navy-900 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">
                                 4
                             </div>
                             <div>
@@ -586,7 +646,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -600,6 +660,10 @@
                 <div class="glass rounded-xl p-6 text-center">
                     <i class="fas fa-ring text-4xl text-navy-300 mb-3"></i>
                     <p class="font-semibold">Weddings</p>
+                </div>
+                <div class="glass rounded-xl p-6 text-center">
+                    <i class="fas fa-plane-departure text-4xl text-navy-300 mb-3"></i>
+                    <p class="font-semibold">Sendoff</p>
                 </div>
                 <div class="glass rounded-xl p-6 text-center">
                     <i class="fas fa-birthday-cake text-4xl text-navy-300 mb-3"></i>
@@ -670,7 +734,8 @@
                         <!-- Testimonial 1 -->
                         <div class="testimonial-card glass-strong rounded-3xl p-8">
                             <div class="flex items-center mb-6">
-                                <div class="w-14 h-14 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full mr-4 flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="w-14 h-14 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full mr-4 flex items-center justify-center flex-shrink-0">
                                     <i class="fas fa-user text-xl"></i>
                                 </div>
                                 <div>
@@ -678,7 +743,9 @@
                                     <p class="text-navy-200 text-sm">Wedding Client</p>
                                 </div>
                             </div>
-                            <p class="text-base mb-4 text-navy-100">"Nikadi made our wedding invitations absolutely stunning! Our guests were amazed by the digital cards and the WhatsApp delivery was so convenient. Highly recommended!"</p>
+                            <p class="text-base mb-4 text-navy-100">"Nikadi made our wedding invitations absolutely
+                                stunning! Our guests were amazed by the digital cards and the WhatsApp delivery was so
+                                convenient. Highly recommended!"</p>
                             <div class="flex text-yellow-400 text-sm">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -687,11 +754,12 @@
                                 <i class="fas fa-star"></i>
                             </div>
                         </div>
-                        
+
                         <!-- Testimonial 2 -->
                         <div class="testimonial-card glass-strong rounded-3xl p-8">
                             <div class="flex items-center mb-6">
-                                <div class="w-14 h-14 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full mr-4 flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="w-14 h-14 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full mr-4 flex items-center justify-center flex-shrink-0">
                                     <i class="fas fa-user text-xl"></i>
                                 </div>
                                 <div>
@@ -699,7 +767,9 @@
                                     <p class="text-navy-200 text-sm">Corporate Event Planner</p>
                                 </div>
                             </div>
-                            <p class="text-base mb-4 text-navy-100">"Professional service from start to finish! The QR code scanning on event day made check-ins seamless. We saved a lot of money on printing costs too!"</p>
+                            <p class="text-base mb-4 text-navy-100">"Professional service from start to finish! The QR
+                                code scanning on event day made check-ins seamless. We saved a lot of money on printing
+                                costs too!"</p>
                             <div class="flex text-yellow-400 text-sm">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -708,11 +778,12 @@
                                 <i class="fas fa-star"></i>
                             </div>
                         </div>
-                        
+
                         <!-- Testimonial 3 -->
                         <div class="testimonial-card glass-strong rounded-3xl p-8">
                             <div class="flex items-center mb-6">
-                                <div class="w-14 h-14 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full mr-4 flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="w-14 h-14 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full mr-4 flex items-center justify-center flex-shrink-0">
                                     <i class="fas fa-user text-xl"></i>
                                 </div>
                                 <div>
@@ -720,7 +791,9 @@
                                     <p class="text-navy-200 text-sm">Birthday Party Host</p>
                                 </div>
                             </div>
-                            <p class="text-base mb-4 text-navy-100">"The customization options are amazing! I was able to personalize every detail of my daughter's birthday invitation. Everyone loved the look!"</p>
+                            <p class="text-base mb-4 text-navy-100">"The customization options are amazing! I was able
+                                to personalize every detail of my daughter's birthday invitation. Everyone loved the
+                                look!"</p>
                             <div class="flex text-yellow-400 text-sm">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -733,7 +806,8 @@
                         <!-- Testimonial 4 -->
                         <div class="testimonial-card glass-strong rounded-3xl p-8">
                             <div class="flex items-center mb-6">
-                                <div class="w-14 h-14 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full mr-4 flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="w-14 h-14 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full mr-4 flex items-center justify-center flex-shrink-0">
                                     <i class="fas fa-user text-xl"></i>
                                 </div>
                                 <div>
@@ -741,7 +815,9 @@
                                     <p class="text-navy-200 text-sm">Corporate Manager</p>
                                 </div>
                             </div>
-                            <p class="text-base mb-4 text-navy-100">"Efficient, reliable, and professional team! They handled our product launch invitations perfectly. The analytics dashboard showing delivery confirmations was very helpful."</p>
+                            <p class="text-base mb-4 text-navy-100">"Efficient, reliable, and professional team! They
+                                handled our product launch invitations perfectly. The analytics dashboard showing
+                                delivery confirmations was very helpful."</p>
                             <div class="flex text-yellow-400 text-sm">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -754,7 +830,8 @@
                         <!-- Testimonial 5 -->
                         <div class="testimonial-card glass-strong rounded-3xl p-8">
                             <div class="flex items-center mb-6">
-                                <div class="w-14 h-14 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full mr-4 flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="w-14 h-14 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full mr-4 flex items-center justify-center flex-shrink-0">
                                     <i class="fas fa-user text-xl"></i>
                                 </div>
                                 <div>
@@ -762,7 +839,9 @@
                                     <p class="text-navy-200 text-sm">Event Organizer</p>
                                 </div>
                             </div>
-                            <p class="text-base mb-4 text-navy-100">"Best decision for our gala! The beautiful designs and seamless delivery made our event feel premium. Guests are still complimenting the invitations!"</p>
+                            <p class="text-base mb-4 text-navy-100">"Best decision for our gala! The beautiful designs
+                                and seamless delivery made our event feel premium. Guests are still complimenting the
+                                invitations!"</p>
                             <div class="flex text-yellow-400 text-sm">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -775,7 +854,8 @@
                         <!-- Testimonial 6 -->
                         <div class="testimonial-card glass-strong rounded-3xl p-8">
                             <div class="flex items-center mb-6">
-                                <div class="w-14 h-14 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full mr-4 flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="w-14 h-14 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full mr-4 flex items-center justify-center flex-shrink-0">
                                     <i class="fas fa-user text-xl"></i>
                                 </div>
                                 <div>
@@ -783,7 +863,9 @@
                                     <p class="text-navy-200 text-sm">Wedding Couple</p>
                                 </div>
                             </div>
-                            <p class="text-base mb-4 text-navy-100">"From design to delivery, everything was perfect! The confirmation calls ensured everyone got our invitation. Highly professional service!"</p>
+                            <p class="text-base mb-4 text-navy-100">"From design to delivery, everything was perfect!
+                                The confirmation calls ensured everyone got our invitation. Highly professional
+                                service!"</p>
                             <div class="flex text-yellow-400 text-sm">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -794,16 +876,18 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Testimonials Controls -->
                 <div class="flex justify-center items-center mt-10 gap-4">
-                    <button id="testimonialPrevBtn" class="glass rounded-full p-3 hover:bg-white/20 transition transform hover:scale-110 duration-300">
+                    <button id="testimonialPrevBtn"
+                        class="glass rounded-full p-3 hover:bg-white/20 transition transform hover:scale-110 duration-300">
                         <i class="fas fa-chevron-left text-xl"></i>
                     </button>
                     <div class="flex gap-2" id="testimonialDots">
                         <!-- Dots will be generated by JS -->
                     </div>
-                    <button id="testimonialNextBtn" class="glass rounded-full p-3 hover:bg-white/20 transition transform hover:scale-110 duration-300">
+                    <button id="testimonialNextBtn"
+                        class="glass rounded-full p-3 hover:bg-white/20 transition transform hover:scale-110 duration-300">
                         <i class="fas fa-chevron-right text-xl"></i>
                     </button>
                 </div>
@@ -816,7 +900,7 @@
         <div class="container mx-auto">
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">Frequently Asked Questions</h2>
             <div class="max-w-3xl mx-auto space-y-4">
-                
+
                 <!-- FAQ 1 -->
                 <div class="accordion-item glass-strong rounded-2xl p-6" onclick="toggleAccordion(this)">
                     <div class="flex justify-between items-center">
@@ -824,10 +908,11 @@
                         <i class="fas fa-chevron-down accordion-icon"></i>
                     </div>
                     <div class="accordion-content pt-4">
-                        <p class="text-navy-200">Typically, we deliver custom-designed e-cards within 2-3 business days. For rush orders, we offer 24-hour turnaround.</p>
+                        <p class="text-navy-200">Typically, we deliver custom-designed e-cards within 2-3 business days.
+                            For rush orders, we offer 24-hour turnaround.</p>
                     </div>
                 </div>
-                
+
                 <!-- FAQ 2 -->
                 <div class="accordion-item glass-strong rounded-2xl p-6" onclick="toggleAccordion(this)">
                     <div class="flex justify-between items-center">
@@ -835,10 +920,11 @@
                         <i class="fas fa-chevron-down accordion-icon"></i>
                     </div>
                     <div class="accordion-content pt-4">
-                        <p class="text-navy-200">Absolutely! Our Premium and Exclusive packages include full customization options. You can choose colors, fonts, images, and layouts.</p>
+                        <p class="text-navy-200">Absolutely! Our Premium and Exclusive packages include full
+                            customization options. You can choose colors, fonts, images, and layouts.</p>
                     </div>
                 </div>
-                
+
                 <!-- FAQ 3 -->
                 <div class="accordion-item glass-strong rounded-2xl p-6" onclick="toggleAccordion(this)">
                     <div class="flex justify-between items-center">
@@ -846,10 +932,11 @@
                         <i class="fas fa-chevron-down accordion-icon"></i>
                     </div>
                     <div class="accordion-content pt-4">
-                        <p class="text-navy-200">With our Standard and higher packages, we make confirmation calls to guests who don't respond to the e-card message.</p>
+                        <p class="text-navy-200">With our Standard and higher packages, we make confirmation calls to
+                            guests who don't respond to the e-card message.</p>
                     </div>
                 </div>
-                
+
                 <!-- FAQ 4 -->
                 <div class="accordion-item glass-strong rounded-2xl p-6" onclick="toggleAccordion(this)">
                     <div class="flex justify-between items-center">
@@ -857,10 +944,12 @@
                         <i class="fas fa-chevron-down accordion-icon"></i>
                     </div>
                     <div class="accordion-content pt-4">
-                        <p class="text-navy-200">Each e-card contains a unique QR code. On event day, we provide scanning devices to verify guest arrival instantly. Available with our Exclusive package.</p>
+                        <p class="text-navy-200">Each e-card contains a unique QR code. On event day, we provide
+                            scanning devices to verify guest arrival instantly. Available with our Exclusive package.
+                        </p>
                     </div>
                 </div>
-                
+
                 <!-- FAQ 5 -->
                 <div class="accordion-item glass-strong rounded-2xl p-6" onclick="toggleAccordion(this)">
                     <div class="flex justify-between items-center">
@@ -868,7 +957,8 @@
                         <i class="fas fa-chevron-down accordion-icon"></i>
                     </div>
                     <div class="accordion-content pt-4">
-                        <p class="text-navy-200">Yes! We use secure WhatsApp and SMS channels directly. No spam, no third-party involvement. Your guest data is kept confidential.</p>
+                        <p class="text-navy-200">Yes! We use secure WhatsApp and SMS channels directly. No spam, no
+                            third-party involvement. Your guest data is kept confidential.</p>
                     </div>
                 </div>
 
@@ -879,10 +969,11 @@
                         <i class="fas fa-chevron-down accordion-icon"></i>
                     </div>
                     <div class="accordion-content pt-4">
-                        <p class="text-navy-200">Yes! Premium and Exclusive packages include automatic reminder SMS messages sent to guests 1 day before your event.</p>
+                        <p class="text-navy-200">Yes! Premium and Exclusive packages include automatic reminder SMS
+                            messages sent to guests 1 day before your event.</p>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </section>
@@ -893,7 +984,7 @@
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">Get In Touch</h2>
             <div class="max-w-4xl mx-auto">
                 <div class="grid md:grid-cols-3 gap-8 mb-12">
-                    
+
                     <div class="glass-strong rounded-2xl p-8 text-center">
                         <div class="text-4xl mb-4">
                             <i class="fas fa-envelope text-navy-300"></i>
@@ -903,7 +994,7 @@
                             info@nikadi.co.tz
                         </a>
                     </div>
-                    
+
                     <div class="glass-strong rounded-2xl p-8 text-center">
                         <div class="text-4xl mb-4">
                             <i class="fas fa-phone text-navy-300"></i>
@@ -913,7 +1004,7 @@
                             +255750301111
                         </a>
                     </div>
-                    
+
                     <div class="glass-strong rounded-2xl p-8 text-center">
                         <div class="text-4xl mb-4">
                             <i class="fas fa-hashtag text-navy-300"></i>
@@ -923,30 +1014,37 @@
                             @nikadi_tz
                         </a>
                     </div>
-                    
+
                 </div>
-                
+
                 <!-- Contact Form -->
                 <div class="glass-strong rounded-3xl p-8 md:p-12">
                     <form class="space-y-6" onsubmit="handleFormSubmit(event)">
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-sm font-semibold mb-2">Full Name</label>
-                                <input type="text" name="name" required class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition" placeholder="Denob Berth">
+                                <input type="text" name="name" required
+                                    class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition"
+                                    placeholder="Denob Berth">
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold mb-2">Phone Number</label>
-                                <input type="tel" name="phone" required class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition" placeholder="+255 750 301111">
+                                <input type="tel" name="phone" required
+                                    class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition"
+                                    placeholder="+255 750 301111">
                             </div>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold mb-2">Email Address</label>
-                            <input type="email" name="email" required class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition" placeholder="denob@example.com">
+                            <input type="email" name="email" required
+                                class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition"
+                                placeholder="denob@example.com">
                         </div>
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-sm font-semibold mb-2">Event Type</label>
-                                <select name="event_type" required class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition text-white">
+                                <select name="event_type" required
+                                    class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition text-white">
                                     <option value="" class="bg-navy-900">Select event type</option>
                                     <option value="wedding" class="bg-navy-900">Wedding</option>
                                     <option value="birthday" class="bg-navy-900">Birthday</option>
@@ -957,7 +1055,8 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold mb-2">Select Package</label>
-                                <select name="package" required class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition text-white">
+                                <select name="package" required
+                                    class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition text-white">
                                     <option value="" class="bg-navy-900">Choose a package</option>
                                     <option value="basic" class="bg-navy-900">Basic - 800 Tsh</option>
                                     <option value="standard" class="bg-navy-900">Standard - 1,000 Tsh</option>
@@ -968,9 +1067,12 @@
                         </div>
                         <div>
                             <label class="block text-sm font-semibold mb-2">Message</label>
-                            <textarea name="message" rows="4" required class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition" placeholder="Tell us about your event..."></textarea>
+                            <textarea name="message" rows="4" required
+                                class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition"
+                                placeholder="Tell us about your event..."></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-white text-navy-900 py-4 rounded-full font-bold text-lg hover:bg-navy-100 transition transform hover:scale-105">
+                        <button type="submit"
+                            class="w-full bg-white text-navy-900 py-4 rounded-full font-bold text-lg hover:bg-navy-100 transition transform hover:scale-105">
                             Send Message
                         </button>
                     </form>
@@ -991,7 +1093,8 @@
                     <p class="text-navy-200 text-sm">Making your invitations memorable</p>
                 </div>
                 <div class="flex space-x-6">
-                    <a href="https://www.facebook.com/profile.php?id=61583301514369" class="text-2xl hover:text-navy-300 transition">
+                    <a href="https://www.facebook.com/profile.php?id=61583301514369"
+                        class="text-2xl hover:text-navy-300 transition">
                         <i class="fab fa-facebook"></i>
                     </a>
                     <a href="https://www.instagram.com/nikadi_tz/" class="text-2xl hover:text-navy-300 transition">
@@ -1019,7 +1122,7 @@
             if (packageSelect) {
                 packageSelect.value = packageName;
             }
-            
+
             // Scroll to contact section
             const contactSection = document.getElementById('contact');
             if (contactSection) {
@@ -1028,7 +1131,7 @@
                     block: 'start'
                 });
             }
-            
+
             // Optionally highlight the package field
             setTimeout(() => {
                 if (packageSelect) {
@@ -1042,7 +1145,7 @@
         }
 
         // Scroll Progress Bar
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const scrollProgress = document.getElementById('scrollProgress');
             const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
             const scrolled = (window.scrollY / scrollTotal) * 100;
@@ -1056,24 +1159,24 @@
                 const target = +counter.getAttribute('data-target');
                 const duration = 2500; // 2.5 seconds for animation
                 const start = performance.now();
-                
+
                 const updateCount = (currentTime) => {
                     const elapsed = currentTime - start;
                     const progress = Math.min(elapsed / duration, 1);
-                    
+
                     // Easing function for smooth acceleration
                     const easeOut = 1 - Math.pow(1 - progress, 3);
                     const current = Math.floor(target * easeOut);
-                    
+
                     counter.textContent = current.toLocaleString();
-                    
+
                     if (progress < 1) {
                         requestAnimationFrame(updateCount);
                     } else {
                         counter.textContent = target.toLocaleString();
                     }
                 };
-                
+
                 requestAnimationFrame(updateCount);
             });
         }
@@ -1170,16 +1273,16 @@
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
-                
+
                 const randomX = Math.random() * window.innerWidth;
                 const randomDelay = Math.random() * 20;
                 const randomDuration = 15 + Math.random() * 10;
-                
+
                 particle.style.left = randomX + 'px';
                 particle.style.animationDelay = randomDelay + 's';
                 particle.style.animationDuration = randomDuration + 's';
                 particle.style.opacity = Math.random() * 0.5 + 0.2;
-                
+
                 particlesContainer.appendChild(particle);
             }
         }
@@ -1208,14 +1311,14 @@
             const eventType = form.querySelector('[name="event_type"]').value;
             const packageSelected = form.querySelector('[name="package"]').value;
             const message = form.querySelector('[name="message"]').value;
-            
+
             // Send WhatsApp notification with all details
             const whatsappMessage = `📋 *NEW BOOKING REQUEST*\n\n*Customer Details:*\n👤 Name: ${name}\n📱 Phone: ${phone}\n📧 Email: ${email}\n\n*Event Details:*\n🎉 Event Type: ${eventType}\n📦 Package Selected: ${packageSelected}\n\n*Message:*\n${message}\n\n---\nPlease contact the customer to confirm the booking.`;
             const whatsappUrl = `https://wa.me/255750301111?text=${encodeURIComponent(whatsappMessage)}`;
-            
+
             // Open WhatsApp in a new tab
             window.open(whatsappUrl, '_blank');
-            
+
             // Reset form
             form.reset();
         }
@@ -1237,7 +1340,7 @@
         // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('nav button');
         const navLinks = document.querySelector('nav .hidden');
-        
+
         if (mobileMenuBtn) {
             mobileMenuBtn.addEventListener('click', () => {
                 navLinks.classList.toggle('hidden');
@@ -1254,4 +1357,5 @@
     </script>
 
 </body>
+
 </html>
