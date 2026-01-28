@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nikadi - Digital E-Card Invitations</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#e6eef9',
+                            100: '#ccddf3',
+                            200: '#99bbe7',
+                            300: '#6699db',
+                            400: '#3377cf',
+                            500: '#0055c3',
+                            600: '#00449c',
+                            700: '#003375',
+                            800: '#00224e',
+                            900: '#001127',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(-45deg, #001127, #003375, #00449c, #0055c3);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #99bbe7, #6699db, #3377cf);
+            z-index: 999;
+            width: 0%;
+            transition: width 0.2s ease;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Animated background shapes */
+        body::before {
+            content: '';
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 85, 195, 0.3) 0%, rgba(0, 85, 195, 0) 70%);
+            border-radius: 50%;
+            top: -100px;
+            left: -100px;
+            animation: float 20s infinite ease-in-out;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(102, 153, 219, 0.2) 0%, rgba(102, 153, 219, 0) 70%);
+            border-radius: 50%;
+            bottom: -150px;
+            right: -100px;
+            animation: float2 25s infinite ease-in-out;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0px, 0px); }
+            33% { transform: translate(50px, -50px); }
+            66% { transform: translate(-50px, 50px); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0px, 0px); }
+            33% { transform: translate(-50px, 50px); }
+            66% { transform: translate(50px, -50px); }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: particle-float 20s infinite linear;
+        }
+
+        @keyframes particle-float {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) translateX(0);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) translateX(100px);
+            }
+        }
+
+        /* Content positioning */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        section {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .glass-strong {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #ffffff 0%, #ccddf3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .slide-up {
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Testimonials Carousel */
+        .carousel {
+            overflow: hidden;
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            flex-shrink: 0;
+        }
+
+        /* FAQ Accordion */
+        .accordion-item {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Button Animations */
+        .btn-animated {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-animated::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(0, 85, 195, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-animated:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Counter Animation */
+        .counter {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        /* Card Hover Animation */
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 85, 195, 0.2);
+        }
+
+        /* Testimonials Grid Sliding */
+        .testimonials-wrapper {
+            position: relative;
+        }
+
+        .testimonials-track {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            grid-auto-flow: column;
+            grid-auto-columns: calc(50% - 10px);
+            scroll-behavior: smooth;
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-track {
+                grid-auto-columns: 100%;
+            }
+        }
+
+        .testimonial-card {
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 85, 195, 0.3);
+        }
+
+        /* Testimonial Dots */
+        .testimonial-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-dot.active {
+            background: white;
+            width: 30px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="text-white">
+    
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <!-- Animated Particles Background -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Navigation -->
+    <nav class="glass fixed w-full top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <img src="logo.svg" alt="Nikadi Logo" class="h-16 w-16">
+                    <span class="text-lg font-bold gradient-text">NIKADI</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-navy-200 transition">Home</a>
+                    <a href="#services" class="hover:text-navy-200 transition">Services</a>
+                    <a href="#packages" class="hover:text-navy-200 transition">Packages</a>
+                    <a href="#how-it-works" class="hover:text-navy-200 transition">How It Works</a>
+                    <a href="#contact" class="hover:text-navy-200 transition">Contact</a>
+                </div>
+                <button class="md:hidden">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-6">
+        <div class="container mx-auto text-center">
+            <div class="glass-strong rounded-3xl p-12 max-w-5xl mx-auto">
+                <div class="floating mb-8">
+                    <i class="fas fa-paper-plane text-7xl text-navy-200"></i>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text">
+                    Digital E-Card Invitations
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-navy-100">
+                    Create stunning invitation e-cards and send them via WhatsApp & SMS
+                </p>
+                <p class="text-lg mb-8 text-navy-200">
+                    We confirm receipt, send reminders, and manage your event with professional QR code scanning
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#packages" class="glass-strong px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-navy-900 transition transform hover:scale-105">
+                        View Packages
+                    </a>
+                    <a href="#contact" class="bg-white text-navy-900 px-8 py-4 rounded-full text-lg font-semibold hover:bg-navy-100 transition transform hover:scale-105">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">Our Services</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass rounded-2xl p-8 text-center transform hover:scale-105 transition">
+                    <div class="text-5xl mb-4">
+                        <i class="fas fa-mobile-alt text-navy-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">WhatsApp & SMS</h3>
+                    <p class="text-navy-200">Send beautiful e-cards directly via WhatsApp and SMS to your guests</p>
+                </div>
+                
+                <div class="glass rounded-2xl p-8 text-center transform hover:scale-105 transition">
+                    <div class="text-5xl mb-4">
+                        <i class="fas fa-phone-alt text-navy-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Confirmation Calls</h3>
+                    <p class="text-navy-200">We call recipients to confirm they received your invitation card</p>
+                </div>
+                
+                <div class="glass rounded-2xl p-8 text-center transform hover:scale-105 transition">
+                    <div class="text-5xl mb-4">
+                        <i class="fas fa-bell text-navy-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Event Reminders</h3>
+                    <p class="text-navy-200">Automatic reminders sent to invitees before your special event</p>
+                </div>
+                
+                <div class="glass rounded-2xl p-8 text-center transform hover:scale-105 transition">
+                    <div class="text-5xl mb-4">
+                        <i class="fas fa-qrcode text-navy-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">QR Scanning</h3>
+                    <p class="text-navy-200">Professional card scanning on your event day for smooth entry</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section id="packages" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">Our Package Pricing</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+                
+                <!-- Package 1: BASIC -->
+                <div class="glass-strong rounded-3xl p-8 transform hover:scale-105 transition hover:shadow-2xl">
+                    <div class="text-center">
+                        <div class="text-navy-300 text-4xl mb-4">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">BASIC</h3>
+                        <p class="text-sm text-navy-200 mb-4">per Card</p>
+                        <div class="text-5xl font-bold mb-6 gradient-text">
+                            800<span class="text-2xl"> Tsh</span>
+                        </div>
+                        <ul class="text-left space-y-3 mb-8 text-navy-100">
+                            <li><i class="fas fa-check text-green-400 mr-2"></i> Design of modern invitation cards</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i> Sending cards to the event host</li>
+                        </ul>
+                        <button onclick="selectPackage('basic')" class="w-full bg-white text-navy-900 py-3 rounded-full font-semibold hover:bg-navy-100 transition">
+                            Select Plan
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Package 2: STANDARD -->
+                <div class="glass-strong rounded-3xl p-8 transform hover:scale-105 transition hover:shadow-2xl border-2 border-navy-300">
+                    <div class="text-center">
+                        <div class="bg-navy-300 text-navy-900 px-4 py-1 rounded-full text-sm font-bold mb-4 inline-block">
+                            POPULAR
+                        </div>
+                        <div class="text-navy-300 text-4xl mb-4">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">STANDARD</h3>
+                        <p class="text-sm text-navy-200 mb-4">per Card</p>
+                        <div class="text-5xl font-bold mb-6 gradient-text">
+                            1,000<span class="text-2xl"> Tsh</span>
+                        </div>
+                        <ul class="text-left space-y-3 mb-8 text-navy-100">
+                            <li><i class="fas fa-check text-green-400 mr-2"></i> All Basic Package services</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i> Distribution via SMS & WhatsApp</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i> Card scanning on event day</li>
+                        </ul>
+                        <button onclick="selectPackage('standard')" class="w-full bg-white text-navy-900 py-3 rounded-full font-semibold hover:bg-navy-100 transition">
+                            Select Plan
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Package 3: PREMIUM -->
+                <div class="glass-strong rounded-3xl p-8 transform hover:scale-105 transition hover:shadow-2xl">
+                    <div class="text-center">
+                        <div class="text-navy-300 text-4xl mb-4">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">PREMIUM</h3>
+                        <p class="text-sm text-navy-200 mb-4">per Card</p>
+                        <div class="text-5xl font-bold mb-6 gradient-text">
+                            1,200<span class="text-2xl"> Tsh</span>
+                        </div>
+                        <ul class="text-left space-y-3 mb-8 text-navy-100">
+                            <li><i class="fas fa-check text-green-400 mr-2"></i> All Standard Package services</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i> Phone call follow-ups</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i> Confirm guest attendance</li>
+                        </ul>
+                        <button onclick="selectPackage('premium')" class="w-full bg-white text-navy-900 py-3 rounded-full font-semibold hover:bg-navy-100 transition">
+                            Select Plan
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Package 4: EXCLUSIVE -->
+                <div class="glass-strong rounded-3xl p-8 transform hover:scale-105 transition hover:shadow-2xl">
+                    <div class="text-center">
+                        <div class="text-navy-300 text-4xl mb-4">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">EXCLUSIVE</h3>
+                        <p class="text-sm text-navy-200 mb-4">per Card</p>
+                        <div class="text-5xl font-bold mb-6 gradient-text">
+                            1,500<span class="text-2xl"> Tsh</span>
+                        </div>
+                        <ul class="text-left space-y-3 mb-8 text-navy-100">
+                            <li><i class="fas fa-check text-green-400 mr-2"></i> All Premium Package services</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i> Thank-you SMS to all guests</li>
+                            <li><i class="fas fa-check text-green-400 mr-2"></i> Bulk SMS services</li>
+                        </ul>
+                        <button onclick="selectPackage('exclusive')" class="w-full bg-white text-navy-900 py-3 rounded-full font-semibold hover:bg-navy-100 transition">
+                            Select Plan
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">How It Works</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    
+                    <div class="glass rounded-2xl p-8">
+                        <div class="flex items-start">
+                            <div class="bg-white text-navy-900 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">
+                                1
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Choose Your Package</h3>
+                                <p class="text-navy-200">Select the package that best fits your event needs and budget</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass rounded-2xl p-8">
+                        <div class="flex items-start">
+                            <div class="bg-white text-navy-900 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">
+                                2
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Design Your E-Card</h3>
+                                <p class="text-navy-200">Work with our team to create a beautiful, custom invitation card</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass rounded-2xl p-8">
+                        <div class="flex items-start">
+                            <div class="bg-white text-navy-900 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">
+                                3
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">We Send & Confirm</h3>
+                                <p class="text-navy-200">We deliver via WhatsApp/SMS and call to confirm receipt</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass rounded-2xl p-8">
+                        <div class="flex items-start">
+                            <div class="bg-white text-navy-900 rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">
+                                4
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Enjoy Your Event</h3>
+                                <p class="text-navy-200">We send reminders and provide QR scanning on your event day</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Types Section -->
+    <section class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">Perfect For All Events</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-6xl mx-auto">
+                <div class="glass rounded-xl p-6 text-center">
+                    <i class="fas fa-ring text-4xl text-navy-300 mb-3"></i>
+                    <p class="font-semibold">Weddings</p>
+                </div>
+                <div class="glass rounded-xl p-6 text-center">
+                    <i class="fas fa-birthday-cake text-4xl text-navy-300 mb-3"></i>
+                    <p class="font-semibold">Birthdays</p>
+                </div>
+                <div class="glass rounded-xl p-6 text-center">
+                    <i class="fas fa-graduation-cap text-4xl text-navy-300 mb-3"></i>
+                    <p class="font-semibold">Graduations</p>
+                </div>
+                <div class="glass rounded-xl p-6 text-center">
+                    <i class="fas fa-briefcase text-4xl text-navy-300 mb-3"></i>
+                    <p class="font-semibold">Corporate</p>
+                </div>
+                <div class="glass rounded-xl p-6 text-center">
+                    <i class="fas fa-baby text-4xl text-navy-300 mb-3"></i>
+                    <p class="font-semibold">Baby Shower</p>
+                </div>
+                <div class="glass rounded-xl p-6 text-center">
+                    <i class="fas fa-calendar-check text-4xl text-navy-300 mb-3"></i>
+                    <p class="font-semibold">Any Event</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">Our Success Story</h2>
+            <div class="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto counter-container">
+                <div class="glass-strong rounded-2xl p-8 text-center card-hover">
+                    <div class="flex items-baseline justify-center mb-4">
+                        <div class="counter text-navy-300 text-5xl" data-target="48">0</div>
+                        <span class="text-navy-300 text-5xl font-bold">+</span>
+                    </div>
+                    <p class="text-xl text-navy-200">Happy Clients</p>
+                </div>
+                <div class="glass-strong rounded-2xl p-8 text-center card-hover">
+                    <div class="flex items-baseline justify-center mb-4">
+                        <div class="counter text-navy-300 text-5xl" data-target="10810">0</div>
+                        <span class="text-navy-300 text-5xl font-bold">+</span>
+                    </div>
+                    <p class="text-xl text-navy-200">E-Cards Sent</p>
+                </div>
+                <div class="glass-strong rounded-2xl p-8 text-center card-hover">
+                    <div class="flex items-baseline justify-center mb-4">
+                        <div class="counter text-navy-300 text-5xl" data-target="25">0</div>
+                        <span class="text-navy-300 text-5xl font-bold">+</span>
+                    </div>
+                    <p class="text-xl text-navy-200">Events Managed</p>
+                </div>
+                <div class="glass-strong rounded-2xl p-8 text-center card-hover">
+                    <div class="counter text-navy-300 mb-4 text-5xl" data-target="98">0</div>
+                    <p class="text-xl text-navy-200">Success Rate %</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">What Our Clients Say</h2>
+            <div class="max-w-6xl mx-auto">
+                <!-- Testimonials Grid with Sliding Animation -->
+                <div class="testimonials-wrapper overflow-hidden">
+                    <div class="testimonials-track" id="testimonialsTrack">
+                        <!-- Testimonial 1 -->
+                        <div class="testimonial-card glass-strong rounded-3xl p-8">
+                            <div class="flex items-center mb-6">
+                                <div class="w-14 h-14 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full mr-4 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-user text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold">Grace Mwadini</h3>
+                                    <p class="text-navy-200 text-sm">Wedding Client</p>
+                                </div>
+                            </div>
+                            <p class="text-base mb-4 text-navy-100">"Nikadi made our wedding invitations absolutely stunning! Our guests were amazed by the digital cards and the WhatsApp delivery was so convenient. Highly recommended!"</p>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 2 -->
+                        <div class="testimonial-card glass-strong rounded-3xl p-8">
+                            <div class="flex items-center mb-6">
+                                <div class="w-14 h-14 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full mr-4 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-user text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold">Ahmed Hassan</h3>
+                                    <p class="text-navy-200 text-sm">Corporate Event Planner</p>
+                                </div>
+                            </div>
+                            <p class="text-base mb-4 text-navy-100">"Professional service from start to finish! The QR code scanning on event day made check-ins seamless. We saved a lot of money on printing costs too!"</p>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 3 -->
+                        <div class="testimonial-card glass-strong rounded-3xl p-8">
+                            <div class="flex items-center mb-6">
+                                <div class="w-14 h-14 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full mr-4 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-user text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold">Amina Juma</h3>
+                                    <p class="text-navy-200 text-sm">Birthday Party Host</p>
+                                </div>
+                            </div>
+                            <p class="text-base mb-4 text-navy-100">"The customization options are amazing! I was able to personalize every detail of my daughter's birthday invitation. Everyone loved the look!"</p>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 4 -->
+                        <div class="testimonial-card glass-strong rounded-3xl p-8">
+                            <div class="flex items-center mb-6">
+                                <div class="w-14 h-14 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full mr-4 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-user text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold">David Kamau</h3>
+                                    <p class="text-navy-200 text-sm">Corporate Manager</p>
+                                </div>
+                            </div>
+                            <p class="text-base mb-4 text-navy-100">"Efficient, reliable, and professional team! They handled our product launch invitations perfectly. The analytics dashboard showing delivery confirmations was very helpful."</p>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 5 -->
+                        <div class="testimonial-card glass-strong rounded-3xl p-8">
+                            <div class="flex items-center mb-6">
+                                <div class="w-14 h-14 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full mr-4 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-user text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold">Sarah Mtume</h3>
+                                    <p class="text-navy-200 text-sm">Event Organizer</p>
+                                </div>
+                            </div>
+                            <p class="text-base mb-4 text-navy-100">"Best decision for our gala! The beautiful designs and seamless delivery made our event feel premium. Guests are still complimenting the invitations!"</p>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 6 -->
+                        <div class="testimonial-card glass-strong rounded-3xl p-8">
+                            <div class="flex items-center mb-6">
+                                <div class="w-14 h-14 bg-gradient-to-br from-navy-300 to-navy-500 rounded-full mr-4 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-user text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold">James Kipchoge</h3>
+                                    <p class="text-navy-200 text-sm">Wedding Couple</p>
+                                </div>
+                            </div>
+                            <p class="text-base mb-4 text-navy-100">"From design to delivery, everything was perfect! The confirmation calls ensured everyone got our invitation. Highly professional service!"</p>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonials Controls -->
+                <div class="flex justify-center items-center mt-10 gap-4">
+                    <button id="testimonialPrevBtn" class="glass rounded-full p-3 hover:bg-white/20 transition transform hover:scale-110 duration-300">
+                        <i class="fas fa-chevron-left text-xl"></i>
+                    </button>
+                    <div class="flex gap-2" id="testimonialDots">
+                        <!-- Dots will be generated by JS -->
+                    </div>
+                    <button id="testimonialNextBtn" class="glass rounded-full p-3 hover:bg-white/20 transition transform hover:scale-110 duration-300">
+                        <i class="fas fa-chevron-right text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">Frequently Asked Questions</h2>
+            <div class="max-w-3xl mx-auto space-y-4">
+                
+                <!-- FAQ 1 -->
+                <div class="accordion-item glass-strong rounded-2xl p-6" onclick="toggleAccordion(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-bold">How long does it take to design the e-cards?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content pt-4">
+                        <p class="text-navy-200">Typically, we deliver custom-designed e-cards within 2-3 business days. For rush orders, we offer 24-hour turnaround.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="accordion-item glass-strong rounded-2xl p-6" onclick="toggleAccordion(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-bold">Can I customize the design of my invitation card?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content pt-4">
+                        <p class="text-navy-200">Absolutely! Our Premium and Exclusive packages include full customization options. You can choose colors, fonts, images, and layouts.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="accordion-item glass-strong rounded-2xl p-6" onclick="toggleAccordion(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-bold">What if guests don't confirm receipt?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content pt-4">
+                        <p class="text-navy-200">With our Standard and higher packages, we make confirmation calls to guests who don't respond to the e-card message.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="accordion-item glass-strong rounded-2xl p-6" onclick="toggleAccordion(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-bold">How does the QR code scanning work?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content pt-4">
+                        <p class="text-navy-200">Each e-card contains a unique QR code. On event day, we provide scanning devices to verify guest arrival instantly. Available with our Exclusive package.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 5 -->
+                <div class="accordion-item glass-strong rounded-2xl p-6" onclick="toggleAccordion(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-bold">Are the e-cards secure and spam-free?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content pt-4">
+                        <p class="text-navy-200">Yes! We use secure WhatsApp and SMS channels directly. No spam, no third-party involvement. Your guest data is kept confidential.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="accordion-item glass-strong rounded-2xl p-6" onclick="toggleAccordion(this)">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-bold">Can I send reminder messages before the event?</h3>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-content pt-4">
+                        <p class="text-navy-200">Yes! Premium and Exclusive packages include automatic reminder SMS messages sent to guests 1 day before your event.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">Get In Touch</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    
+                    <div class="glass-strong rounded-2xl p-8 text-center">
+                        <div class="text-4xl mb-4">
+                            <i class="fas fa-envelope text-navy-300"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Email</h3>
+                        <a href="mailto:info@nikadi.co.tz" class="text-navy-200 hover:text-white transition">
+                            info@nikadi.co.tz
+                        </a>
+                    </div>
+                    
+                    <div class="glass-strong rounded-2xl p-8 text-center">
+                        <div class="text-4xl mb-4">
+                            <i class="fas fa-phone text-navy-300"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Phone</h3>
+                        <a href="tel:+255750301111" class="text-navy-200 hover:text-white transition">
+                            +255750301111
+                        </a>
+                    </div>
+                    
+                    <div class="glass-strong rounded-2xl p-8 text-center">
+                        <div class="text-4xl mb-4">
+                            <i class="fas fa-hashtag text-navy-300"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Social Media</h3>
+                        <a href="#" class="text-navy-200 hover:text-white transition">
+                            @nikadi_tz
+                        </a>
+                    </div>
+                    
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="glass-strong rounded-3xl p-8 md:p-12">
+                    <form class="space-y-6" onsubmit="handleFormSubmit(event)">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Full Name</label>
+                                <input type="text" name="name" required class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition" placeholder="Denob Berth">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Phone Number</label>
+                                <input type="tel" name="phone" required class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition" placeholder="+255 750 301111">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Email Address</label>
+                            <input type="email" name="email" required class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition" placeholder="denob@example.com">
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Event Type</label>
+                                <select name="event_type" required class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition text-white">
+                                    <option value="" class="bg-navy-900">Select event type</option>
+                                    <option value="wedding" class="bg-navy-900">Wedding</option>
+                                    <option value="birthday" class="bg-navy-900">Birthday</option>
+                                    <option value="graduation" class="bg-navy-900">Graduation</option>
+                                    <option value="corporate" class="bg-navy-900">Corporate Event</option>
+                                    <option value="other" class="bg-navy-900">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Select Package</label>
+                                <select name="package" required class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition text-white">
+                                    <option value="" class="bg-navy-900">Choose a package</option>
+                                    <option value="basic" class="bg-navy-900">Basic - 800 Tsh</option>
+                                    <option value="standard" class="bg-navy-900">Standard - 1,000 Tsh</option>
+                                    <option value="premium" class="bg-navy-900">Premium - 1,200 Tsh</option>
+                                    <option value="exclusive" class="bg-navy-900">Exclusive - 1,500 Tsh</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Message</label>
+                            <textarea name="message" rows="4" required class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:outline-none focus:border-white/40 transition" placeholder="Tell us about your event..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-white text-navy-900 py-4 rounded-full font-bold text-lg hover:bg-navy-100 transition transform hover:scale-105">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass py-8 px-6 mt-20">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center gap-2 mb-2">
+                        <img src="logo.svg" alt="Nikadi Logo" class="h-14 w-14">
+                        <span class="text-xl font-bold gradient-text">NIKADI</span>
+                    </div>
+                    <p class="text-navy-200 text-sm">Making your invitations memorable</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://www.facebook.com/profile.php?id=61583301514369" class="text-2xl hover:text-navy-300 transition">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/nikadi_tz/" class="text-2xl hover:text-navy-300 transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-2xl hover:text-navy-300 transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://wa.me/255750301111" class="text-2xl hover:text-navy-300 transition">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="text-center mt-8 text-navy-200 text-sm">
+                <p>&copy; 2026 Nikadi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Handle package selection from packages section
+        function selectPackage(packageName) {
+            // Set the package value in the form
+            const packageSelect = document.querySelector('select[name="package"]');
+            if (packageSelect) {
+                packageSelect.value = packageName;
+            }
+            
+            // Scroll to contact section
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+            
+            // Optionally highlight the package field
+            setTimeout(() => {
+                if (packageSelect) {
+                    packageSelect.focus();
+                    packageSelect.style.boxShadow = '0 0 10px rgba(255, 200, 0, 0.5)';
+                    setTimeout(() => {
+                        packageSelect.style.boxShadow = '';
+                    }, 2000);
+                }
+            }, 500);
+        }
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', function() {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / scrollTotal) * 100;
+            scrollProgress.style.width = scrolled + '%';
+        });
+
+        // Counter Animation with Countdown Effect
+        function animateCounter() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2500; // 2.5 seconds for animation
+                const start = performance.now();
+                
+                const updateCount = (currentTime) => {
+                    const elapsed = currentTime - start;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    // Easing function for smooth acceleration
+                    const easeOut = 1 - Math.pow(1 - progress, 3);
+                    const current = Math.floor(target * easeOut);
+                    
+                    counter.textContent = current.toLocaleString();
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        counter.textContent = target.toLocaleString();
+                    }
+                };
+                
+                requestAnimationFrame(updateCount);
+            });
+        }
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('slide-up');
+                    if (entry.target.classList.contains('counter-container')) {
+                        animateCounter();
+                        observer.unobserve(entry.target);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Testimonials Carousel - 2 Column Sliding
+        const testimonialsTrack = document.getElementById('testimonialsTrack');
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        const testimonialDotsContainer = document.getElementById('testimonialDots');
+        const testimonialPrevBtn = document.getElementById('testimonialPrevBtn');
+        const testimonialNextBtn = document.getElementById('testimonialNextBtn');
+
+        let currentTestimonialIndex = 0;
+        const testimonialsPerView = 2;
+        const totalTestimonials = testimonialCards.length;
+
+        // Create dots
+        function createTestimonialDots() {
+            for (let i = 0; i < Math.ceil(totalTestimonials / testimonialsPerView); i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('testimonial-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToTestimonialSlide(i));
+                testimonialDotsContainer.appendChild(dot);
+            }
+        }
+
+        function updateTestimonialSlide() {
+            const offset = -currentTestimonialIndex * 50;
+            testimonialsTrack.style.transform = `translateX(${offset}%)`;
+
+            // Update active dot
+            document.querySelectorAll('.testimonial-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentTestimonialIndex);
+            });
+        }
+
+        function nextTestimonialSlide() {
+            currentTestimonialIndex = (currentTestimonialIndex + 1) % Math.ceil(totalTestimonials / testimonialsPerView);
+            updateTestimonialSlide();
+        }
+
+        function prevTestimonialSlide() {
+            currentTestimonialIndex = (currentTestimonialIndex - 1 + Math.ceil(totalTestimonials / testimonialsPerView)) % Math.ceil(totalTestimonials / testimonialsPerView);
+            updateTestimonialSlide();
+        }
+
+        function goToTestimonialSlide(index) {
+            currentTestimonialIndex = index;
+            updateTestimonialSlide();
+        }
+
+        if (testimonialPrevBtn) {
+            testimonialPrevBtn.addEventListener('click', prevTestimonialSlide);
+        }
+        if (testimonialNextBtn) {
+            testimonialNextBtn.addEventListener('click', nextTestimonialSlide);
+        }
+
+        // Initialize dots and slides
+        createTestimonialDots();
+
+        // Auto-slide testimonials every 6 seconds
+        setInterval(nextTestimonialSlide, 6000);
+
+        // FAQ Accordion
+        function toggleAccordion(element) {
+            element.classList.toggle('active');
+        }
+
+        // Create animated particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            if (!particlesContainer) return;
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const randomX = Math.random() * window.innerWidth;
+                const randomDelay = Math.random() * 20;
+                const randomDuration = 15 + Math.random() * 10;
+                
+                particle.style.left = randomX + 'px';
+                particle.style.animationDelay = randomDelay + 's';
+                particle.style.animationDuration = randomDuration + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize particles on load
+        window.addEventListener('load', createParticles);
+
+        // Observe counter container specifically for animation
+        const counterContainer = document.querySelector('.counter-container');
+        if (counterContainer) {
+            observer.observe(counterContainer);
+        }
+
+        // Observe elements for scroll animations
+        document.querySelectorAll('.glass-strong, .glass, .card-hover').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Handle form submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const name = form.querySelector('[name="name"]').value;
+            const phone = form.querySelector('[name="phone"]').value;
+            const eventType = form.querySelector('[name="event_type"]').value;
+            const packageSelected = form.querySelector('[name="package"]').value;
+            
+            // Send WhatsApp notification
+            const whatsappMessage = `New booking request from ${name} (${phone}) for ${eventType} event. Package: ${packageSelected}. Please check for more details.`;
+            const whatsappUrl = `https://wa.me/255750301111?text=${encodeURIComponent(whatsappMessage)}`;
+            
+            // Open WhatsApp in a new tab
+            window.open(whatsappUrl, '_blank');
+            
+            // Reset form
+            form.reset();
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('nav button');
+        const navLinks = document.querySelector('nav .hidden');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('hidden');
+                navLinks.classList.toggle('flex');
+                navLinks.classList.toggle('flex-col');
+                navLinks.classList.toggle('absolute');
+                navLinks.classList.toggle('top-full');
+                navLinks.classList.toggle('left-0');
+                navLinks.classList.toggle('w-full');
+                navLinks.classList.toggle('glass-strong');
+                navLinks.classList.toggle('p-6');
+            });
+        }
+    </script>
+
+</body>
+</html>
